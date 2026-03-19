@@ -1,0 +1,23 @@
+
+executable = /home/yu/XRT/MultipleTiling/cond/TS_unified/run_TS_one_gamma5.sh
+arguments  = $(Process) $(PF_log) $(rho)
+
+output = /scratch/yu/condor/job_$(Cluster)_$(Process).out
+error  = /scratch/yu/condor/job_$(Cluster)_$(Process).err
+log    = /scratch/yu/condor/job_$(Cluster)_$(Process).log
+
+
+request_cpus   = 1
+request_memory = 4 GB
+request_disk   = 4 GB
+
+
+# getenv = true
+should_transfer_files = yes
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /home/yu/XRT/MultipleTiling/cond/TS_unified/
+transfer_output_files = output/
+universe = vanilla
+
+
+queue 1000
