@@ -1,0 +1,30 @@
+ORDER
+STEP 1 data_preparation
+1: data_preparation/GetObsDataInSciserver.ipynb
+You can make an account on Sciserver (HEASARC) and run this notebook on the server to copy XRT observation data (control sample templete) to a directory.
+→ download the directory into your PC manually (and move it to grappa)
+
+2: data_preparation/PrepareControlSamples.ipynb
+This is supposed to be run not on sciserver but grappa. 
+This devides the downloaded data by 200 s exposure and randomly assgins these chunks as comtrol samples corresponding to each tiling.
+→ for each tiling, 1000 samples are prepared
+example) IC200926A (4 tiling) 
+/home/yu/XRT/MultipleTiling/IC200926A/combined/combined_0/combined_0.npy → paths of 4 control samples randomly selected
+/home/yu/XRT/MultipleTiling/IC200926A/combined/combined_1/combined_1.npy → paths of other 4 control samples randomly selected
+                                                            :
+/home/yu/XRT/MultipleTiling/IC200926A/combined/combined_999/combined_999.npy → paths of other 4 control samples randomly selected
+
+BG simulation files(= files written in combined_**.npy) are contained in /home/yu/XRT/MultipleTiling/IC**/combined/combined_**/BG
+
+STEP 2 injection&source_removal
+1: /home/yu/XRT/Git/injection&source_removal/inject.ipynb
+This lets /home/yu/XRT/Git/injection&source_removal/inject_mp_rho.py run in multiprocessing.
+(Multiprocessing was somehow faster than condor but inject_mp_rho.py can be run on condor)
+
+2: /home/yu/XRT/Git/injection&source_removal/2rxsRemove.ipynb
+
+STEP 3 TS_calculation
+1: /home/yu/XRT/Git/TS_calculation/TS_many_gamma5.submit
+Though the name is '*_gamma5', this code is general. You just change a valiable 'LZGamma_ref' (and lumis = ['BG', '1e44', '5e44', '1e45'..] if needed).
+
+STEP 4 sensitivity_plot
