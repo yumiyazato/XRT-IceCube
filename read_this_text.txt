@@ -1,4 +1,24 @@
-ORDER
+--DATA DIRECTORY--
+base directory: 
+/home/yu/XRT/MultipleTiling/
+
+./IC**A: 
+XRT followup observation for IceCube neutrino alert. I checked XRT web page and GCN to know them. 
+However, not all of them can be used because some are from southern sky, or by different selection type.
+So I use '/home/yu/XRT/MultipleTiling/full_with_icname_swifttime_obsstart.csv' to determine which follow up we use. 
+The details are commented in the injection or TS_calculation code.
+
+./IC**A/observationID(ex:MultipleTiling/IC160731A/34638): 
+This includes XRT's real observation file (1 tile) which is supposed to be unblinded as 'sw***xpc3po_cl.evt'. This file is clean file (XRT's calibration has been done), but our original calibration(200s chunk or source removal) hasnot yet been done.
+
+./IC**A/combined/combined_i (i=0~999)
+Since we need to conduct simulations not for 1 tile but for multiple tilings, we have to combine the multiple tilings into 1 set.
+'combined_i.npy' in this directory contains paths of control samples for the multiple tiling observations. 
+We have 1000 set of control samples (i=0~999) for an IceCube alert.
+
+
+
+--ORDER--
 STEP 1 data_preparation
 1: data_preparation/GetObsDataInSciserver.ipynb
 You can make an account on Sciserver (HEASARC) and run this notebook on the server to copy XRT observation data (control sample templete) to a directory.
@@ -28,3 +48,5 @@ STEP 3 TS_calculation
 Though the name is '*_gamma5', this code is general. You just change a valiable 'LZGamma_ref' (and lumis = ['BG', '1e44', '5e44', '1e45'..] if needed).
 
 STEP 4 sensitivity_plot
+
+
