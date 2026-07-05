@@ -23,6 +23,8 @@ STEP 1 data_preparation
 1: data_preparation/GetObsDataInSciserver.ipynb
 You can make an account on Sciserver (HEASARC) and run this notebook on the server to copy XRT observation data (control sample templete) to a directory.
 → download the directory into your PC manually (and move it to grappa)
+** This notebook is used to obtain observation data for 2022. For other years, run the same notebook after manually changing the year-related settings
+
 
 2: data_preparation/PrepareControlSamples.ipynb
 This is supposed to be run not on sciserver but grappa. 
@@ -40,6 +42,7 @@ STEP 2 injection&source_removal
 1: /home/yu/XRT/Git/injection&source_removal/inject.ipynb
 This lets /home/yu/XRT/Git/injection&source_removal/inject_mp_rho.py run in multiprocessing.
 (Multiprocessing was somehow faster than condor but inject_mp_rho.py can be run on condor)
+The bulk Lorentz factor LZGamma is set to 7 in this notebook. You can just change the setting to get other in
 
 2: /home/yu/XRT/Git/injection&source_removal/2rxsRemove.ipynb
 
